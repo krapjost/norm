@@ -1,7 +1,6 @@
 return function()
 	local sidebar = require("sidebar-nvim")
 	local harpoon = require("harpoon")
-	local file = string.match(vim.fn.system("git rev-parse --show-toplevel 2> /dev/null | tr -d '\n'"), "/(%w+)$")
 
 	local harpoon_marks = {
 		title = "Harpoon Marks",
