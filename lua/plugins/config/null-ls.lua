@@ -30,7 +30,8 @@ return function()
           callback = function()
             vim.lsp.buf.format({
               filter = function(server)
-                return server.name ~= "null-ls"
+                print(server.name)
+                return server.name == "null-ls"
               end,
             })
           end,
