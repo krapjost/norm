@@ -1,7 +1,29 @@
 return function()
 	local null_ls = require("null-ls")
+	local h = require("null-ls.helpers")
+	local methods = require("null-ls.methods")
+
+	local gleam_formatter = h.make_builtin({
+		name = "gleam",
+		meta = {
+			url = "https://github.com/gleam-lang/gleam",
+			description = "Gleam's official formatter",
+		},
+		method = methods.internal.FORMATTING,
+		filetypes = { "gleam" },
+		generator_opts = {
+			command = "gleam",
+			args = { "format", "$FILENAME" },
+			to_stdin = false,
+		},
+		factory = h.formatter_factory,
+	})
+
 	null_ls.setup({
 		sources = {
+			gleam_formatter.with({
+				filetypes = { "gleam" },
+			}),
 			null_ls.builtins.formatting.stylua,
 			null_ls.builtins.formatting.rustfmt,
 			null_ls.builtins.formatting.dprint.with({
@@ -36,6 +58,7 @@ return function()
 								return server.name == "null-ls"
 							end,
 						})
+						vim.api.nvim_exec("edit!", false)
 					end,
 				})
 			end

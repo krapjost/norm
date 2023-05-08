@@ -131,7 +131,7 @@ return {
 			config = require("plugins.config.mason"),
 		},
 		{
-			"williamboman/mason-lspconfig.nvim",
+			"krapjost/mason-lspconfig.nvim",
 			config = require("plugins.config.mason-lspconfig"),
 			dependencies = { "neovim/nvim-lspconfig" },
 		},
